@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="leftcolumn">
+   {% for post in post_list %}
+   <div class="card">
+      <h2><a href="{% url 'post_detail' post.pk %}" class="button">{{ post.title }}</a></h2>
+      <h5>Author: {{ post.author }} | Posted: {{ post.updated_on}} | Category: {{ post.category }} | </h5>
+      {% if post.is_important == 1 %}
+      <h5 style="color:Red;">Important!</h5>
+      {% endif %}
+      <p>{{post.content|slice:":200" }}</p>
+   </div>
+   {% endfor %}
+</div>
+{%endblock%}

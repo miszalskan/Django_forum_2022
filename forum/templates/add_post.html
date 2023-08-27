@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+   input[type=text], select {
+   width: 100%;
+   padding: 12px 20px;
+   margin: 8px 0;
+   display: inline-block;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   box-sizing: border-box;}
+   input[type=submit] {
+   width: 100%;
+   background-color: #87CEFA;
+   color: #474e5d;
+   padding: 14px 20px;
+   margin: 8px 0;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;}
+</style>
+<div class="leftcolumn">
+   <div class="postcard">
+      {% if user.is_authenticated %}
+      {%  if submitted  %}
+      <h2>Add Blog Post</h2>
+      You Post was Posted successfully!
+      {%  else %}
+      <form method="POST">
+         {% csrf_token %}
+         {{ form.as_p }}
+         <input type="submit" value="Post it!">
+      </form>
+      {%  endif %}
+      {% else %}
+      <h2>Sorry! You must be logged in to add your post...</h2>
+      <a href="{% url 'users:login' %}">Login Here</a>
+      {% endif %}
+   </div>
+</div>
+{% endblock content %}
+

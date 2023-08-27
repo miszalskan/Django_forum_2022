@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="leftcolumn">
+   <div class="postcard">
+      <h2>{% block title %} {{ post.title }} {% endblock title %}</h2>
+      <p>{{  post.author }} | {{ post.updated_on }}</p>
+       {% if post.is_important == 1 %}
+      <h5 style="color:Red;">Important!</h5>
+      {% endif %}
+      <p>{{ post.content | safe }}</p>
+   </div>
+   <div class="postcard">
+      <h1>Comments...</h1>
+      {% if not post.comments.all %}
+      No Comments Yet... <a href="{% url 'add_comment' post.pk %}">Add One</a>
+      {% else %}
+      <br>
+      <a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+      <br><br>
+      {% for comment in post.comments.all %}
+      <strong>{{ comment.name}} - {{comment.created_on }}</strong>
+      <br>
+      {{ comment.body }}
+      <br/><br/>
+      {% endfor %}
+      {% endif %}
+   </div>
+</div>
+{% endblock content %}

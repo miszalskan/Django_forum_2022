@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static '/main.css' %}">
+    <title>My Forum</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+    <nav>
+        <div class="loginpanel">
+            {%  if user.is_authenticated %}
+                <h5><a href="{% url 'users:user_profile' user.pk %}">PROFILE </a><a href="{% url 'users:logout' %}">LOGOUT </a></h5>
+            {% else %}
+                 <h5><a href="{% url 'users:login' %}">LOGIN </a><a href="{% url 'users:register' %}"> REGISTER</a></h5>
+            {% endif %}
+        </div>
+       <div class="header">
+           <h2><a href="{% url 'index' %}">My Forum</a></h2>
+        </div>
+        <div class="addpost">
+            <h1><a href="{% url 'add_post' %}">Add Post</a></h1>
+        </div>
+        <div class="msg">
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="row">
+            {% block content %}
+
+            {% endblock content %}
+          <div class="rightcolumn">
+            <div class="card">
+              <h2><a href="{% url 'about' %}">About Us</a></h2>
+                <img src="{% static 'media/sports.jpg' %}" style="width:100%">
+              <p>Read something about us!</p>
+            </div>
+          </div>
+        </div>
+        </nav>
+        <div class="footer">
+          <h5>Copyright &copy; 2022</h5>
+        </div>
+    </body>
+</html>

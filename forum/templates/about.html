@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <link rel="stylesheet" href="{% static '/about.css' %}">
+      <title>About Us</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+   </head>
+   <body>
+      <div class="about-section">
+         <h1><a href = {% url 'index' %}>My forum</a></h1>
+         <p>Get to know something about us!</p>
+      </div>
+      <h2 style="text-align:center">Our Team</h2>
+      <div class="row">
+         <div class="column">
+            <div class="card">
+               <img src="{% static '/media/snowboard.jpg' %}" alt="Jane" style="width:100%">
+               <div class="container">
+                  <h2>Person 1</h2>
+                  <p>in the winter I love to snowboard</p>
+                  <p>me@example.com</p>
+               </div>
+            </div>
+         </div>
+         <div class="column">
+            <div class="card">
+               <img src="{% static '/media/dziecko.jpg' %}" alt="Mike" style="width:100%">
+               <div class="container">
+                  <h2>Person 2</h2>
+                  <p>I love to sledding on my belly!</p>
+                  <p>me@example.com</p>
+               </div>
+            </div>
+         </div>
+         <div class="column">
+            <div class="card">
+               <img src="{% static '/media/niewiemcoto.jpg' %}" alt="Ann" style="width:100%">
+               <div class="container">
+                  <h2>Person 3</h2>
+                  <p>I love no hand sledding!</p>
+                  <p>me@example.com</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

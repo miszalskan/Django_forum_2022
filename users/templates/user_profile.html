@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="leftcolumn">
+   <h2>{% block title %} {{ user.name }} {% endblock title %}</h2>
+   {% if not user.posts.all %}
+   No Posts Yet...
+   {% else %}
+   {% for post in user.posts.all %}
+   <div class="card">
+      <h2><a href="{% url 'post_detail' post.pk %}" class="button">{{ post.title }}</a></h2>
+      <h5>Author: {{ user.username }} | Posted: {{ post.updated_on}}</h5>
+      {% if post.is_important == 1 %}
+      <h5 style="color:Red;">Important!</h5>
+      {% endif %}
+      <p>{{post.content|slice:":200" }}</p>
+   </div>
+   {% endfor %}
+   {% endif %}
+</div>
+{%endblock%}
